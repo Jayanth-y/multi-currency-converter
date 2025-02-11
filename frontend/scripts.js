@@ -60,7 +60,7 @@ async function fetchConversionRates() {
         return;
     }
 
-    const BACKEND_URL = "http://127.0.0.1:8000";  // Change for deployment
+    const BACKEND_URL = "https://multi-currency-converter.onrender.com";  // Change for deployment
     const apiUrl = `${BACKEND_URL}/convert/?base_currency=${baseCurrency}&amount=${amount}&target_currencies=${selectedCurrencies.join("&target_currencies=")}`;
 
     console.log("Fetching from API:", apiUrl);  // Log
