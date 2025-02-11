@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Currency Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Live Multi-Currency Converter</h1>
+
+        <!-- Base Currency & Amount (Same Row) -->
+        <div class="currency-input-container">
+            <select id="baseCurrency">
+                <option value="AUD">AUD - Australian Dollar</option>
+                <option value="BRL">BRL - Brazilian Real</option>
+                <option value="CAD">CAD - Canadian Dollar</option>
+                <option value="CHF">CHF - Swiss Franc</option>
+                <option value="CNY">CNY - Chinese Yuan</option>
+                <option value="EUR">EUR - Euro</option>
+                <option value="GBP">GBP - British Pound</option>
+                <option value="HKD">HKD - Hong Kong Dollar</option>
+                <option value="INR">INR - Indian Rupee</option>
+                <option value="JPY">JPY - Japanese Yen</option>
+                <option value="KRW">KRW - South Korean Won</option>
+                <option value="MXN">MXN - Mexican Peso</option>
+                <option value="NOK">NOK - Norwegian Krone</option>
+                <option value="NZD">NZD - New Zealand Dollar</option>
+                <option value="RUB">RUB - Russian Ruble</option>
+                <option value="SEK">SEK - Swedish Krona</option>
+                <option value="SGD">SGD - Singapore Dollar</option>
+                <option value="TRY">TRY - Turkish Lira</option>
+                <option value="USD">USD - US Dollar</option>
+                <option value="ZAR">ZAR - South African Rand</option>
+            </select>
+
+            <input type="number" id="amount" placeholder="Enter amount" value="">
+        </div>
+
+        <!-- Currency Selection Section -->
+        <h3>Add Currencies</h3>
+        <div id="currencyList"></div>
+
+        <!-- Converted Values -->
+        <div id="conversionResults"></div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
