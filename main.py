@@ -1,4 +1,4 @@
-
+import os
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 import requests
@@ -9,10 +9,10 @@ app = FastAPI()
 # Enable CORS to allow frontend requests
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow requests from any frontend
-    allow_methods=["*"],  # Allow all request types (GET, POST, etc.)
-    allow_headers=["*"],  # Allow all headers
-    allow_credentials=True
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Get API Key from Environment Variable
@@ -20,13 +20,16 @@ API_KEY = os.getenv("EXCHANGE_API_KEY")
 if not API_KEY:
     raise ValueError("API Key not found. Please set EXCHANGE_API_KEY.")
 
-# API Key for fetching exchange rates
 BASE_URL = f"https://v6.exchangerate-api.com/v6/{API_KEY}/latest/"
 
 @app.get("/convert/")
-def convert_currency(base_currency: str, amount: float, target_currencies: List[str] = Query(...)):
+def convert_currency(
+    base_currency: str,
+    amount: float,
+    target_currencies: List[str] = Query(...)
+):
     try:
-        # Fetch exchange rates for the base currency
+        # Fetch exchange rates
         response = requests.get(BASE_URL + base_currency)
         data = response.json()
 
@@ -40,13 +43,13 @@ def convert_currency(base_currency: str, amount: float, target_currencies: List[
         for currency in target_currencies:
             if currency in conversion_rates:
                 converted_value = amount * conversion_rates[currency]
-                one_target_to_base = 1 / conversion_rates[currency]  # 1 target = how much base
-                one_base_to_target = conversion_rates[currency]      # 1 base = how much target
+                one_target_to_base = 1 / conversion_rates[currency]  
+                one_base_to_target = conversion_rates[currency]      
                 
                 result[currency] = {
                     "converted_amount": round(converted_value, 2),
-                    "one_target_to_base": round(one_target_to_base, 4),
-                    "one_base_to_target": round(one_base_to_target, 4)
+                    "one_target_to_base": round(one_target_to_base, 6),
+                    "one_base_to_target": round(one_base_to_target, 6)
                 }
             else:
                 result[currency] = "Currency not available"
