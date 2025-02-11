@@ -90,6 +90,6 @@ async function fetchConversionRates() {
 // Event Listeners
 amountInput.addEventListener("input", fetchConversionRates);
 baseCurrencySelect.addEventListener("change", fetchConversionRates);
-renderCurrencyButtons();
 fetchConversionRates();
+renderCurrencyButtons();
 
