@@ -8,7 +8,7 @@ const availableCurrencies = [
     "HKD", "SGD", "SEK", "NOK", "MXN", "NZD", "BRL", "RUB", "ZAR"
 ];
 
-let selectedCurrencies = [];
+let selectedCurrencies = ["USD"];
 
 // Function to Render Currency Selection Buttons
 function renderCurrencyButtons() {
@@ -91,3 +91,5 @@ async function fetchConversionRates() {
 amountInput.addEventListener("input", fetchConversionRates);
 baseCurrencySelect.addEventListener("change", fetchConversionRates);
 renderCurrencyButtons();
+fetchConversionRates();
+
