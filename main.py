@@ -15,8 +15,10 @@ app.add_middleware(
     allow_credentials=True
 )
 
-# Your API key goes here
-API_KEY = "<your-key-here>"
+# Get API Key from Environment Variable
+API_KEY = os.getenv("EXCHANGE_API_KEY")
+if not API_KEY:
+    raise ValueError("API Key not found. Please set EXCHANGE_API_KEY.")
 
 # API Key for fetching exchange rates
 BASE_URL = f"https://v6.exchangerate-api.com/v6/{API_KEY}/latest/"
