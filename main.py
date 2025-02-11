@@ -22,6 +22,10 @@ if not API_KEY:
 
 BASE_URL = f"https://v6.exchangerate-api.com/v6/{API_KEY}/latest/"
 
+@app.get("/ping")
+def keep_alive():
+    return {"status": "alive"}
+
 @app.get("/convert/")
 def convert_currency(
     base_currency: str,
